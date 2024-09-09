@@ -9,18 +9,25 @@ https://colab.research.google.com/github/googlecolab/colabtools/blob/master/note
 ### Notebooks
 
 1: Navigate to notebook via GitHub
+
 2: Open in Colab
-  2a: If necessary, clone the repo from within the Colab view to use utils
+  
+2a: If necessary, clone the repo from within the Colab view to use utils
+  
 3: Make changes, make temporary saves using "File" -> "Save a copy to Drive"
+
 4: To push changes to GitHub, press "File" -> "Save a copy to GitHub"
+
 
 ### Python scripts
 
 1: Use GitHub normally :)
 
+
 ## Cloning GitHub repo within a colab file
 
 1: Clone repository
+
 2: Navigate to the repository
 
 ```
