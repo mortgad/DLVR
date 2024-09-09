@@ -10,7 +10,7 @@ https://colab.research.google.com/github/googlecolab/colabtools/blob/master/note
 
 1: Navigate to notebook via GitHub
 
-2: Open in Colab
+2: Open in Colab via the Chrome extension or the "Open in Colab" button
   
 2a: If necessary, clone the repo from within the Colab view to use utils
   
