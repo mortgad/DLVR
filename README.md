@@ -23,14 +23,14 @@ https://colab.research.google.com/github/googlecolab/colabtools/blob/master/note
 1: Clone repository
 2: Navigate to the repository
 
-'''
+```
 !git clone https://github.com/mortgad/DLVR.git
 %cd DLVR
-'''
+```
 
 Then, you can import from utils, e.g.:
 
-'''
+```
 from utils.tokenizer import tokenize
 tokenize(text="Hello World")
-'''
+```
