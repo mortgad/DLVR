@@ -41,3 +41,7 @@ Then, you can import from utils, e.g.:
 from utils.tokenizer import tokenize
 tokenize(text="Hello World")
 ```
+
+## Cloning GitHub repo within a kaggle file
+
+1. TODO
