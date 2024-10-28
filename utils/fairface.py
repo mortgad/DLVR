@@ -183,3 +183,29 @@ def preprocess_fairface(df_fairface_train, df_fairface_val):
     df_fairface_code = df_fairface_raw[['file','age_code','gender_code','race_code']]
 
     return df_fairface_eda, df_fairface_code
+
+
+def split_data(images, ages, races, genders):
+  from sklearn.model_selection import train_test_split
+  # Reduce sample size
+  images_sample, hep_x, ages_sample, hep_y, races_sample, hep_z, genders_sample, hep_w = train_test_split(
+      images, ages, races, genders, test_size=0.50, random_state=42, stratify=ages)
+
+  # Split into train (75%) and temp (25%)
+  X_train, X_temp, y_train_age, y_temp_age, y_train_races, y_temp_races, y_train_gender, y_temp_gender = train_test_split(
+      images_sample, ages_sample, races_sample, genders_sample, test_size=0.25, random_state=42, stratify=ages_sample)
+
+  # Split temp into validation (80% of temp) and test (20% of test)
+  X_val, X_test, y_val_age, y_test_age, y_val_races, y_test_races, y_val_gender, y_test_gender = train_test_split(
+      X_temp, y_temp_age, y_temp_races, y_temp_gender, test_size=0.20, random_state=42, stratify=y_temp_age)
+
+  # Print output
+  print(f"Training set: {X_train.shape}, Training labels: {y_train_age.shape}")
+  print(f"Age validation set: {X_val.shape}, Age validation labels: {y_val_age.shape}")
+  print(f"Age test set: {X_test.shape}, Age test labels: {y_test_age.shape}")
+  print(f"Race validation labels: {y_val_races.shape}")
+  print(f"Race test labels: {y_test_races.shape}")
+  print(f"Gender validation labels: {y_val_gender.shape}")
+  print(f"Gender test labels: {y_test_gender.shape}")
+
+  return X_train, X_val, X_test, y_train_age, y_val_age, y_test_age, y_train_races, y_val_races, y_test_races, y_train_gender, y_val_gender, y_test_gender
