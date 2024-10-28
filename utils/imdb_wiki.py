@@ -82,7 +82,7 @@ def create_dataframe(extract_dir):
     filtered_photo_taken = photo_taken[valid_indices]
 
     # Convert paths to strings and create a full path for each image
-    base_image_path = "/content/datasets/imdb_crop/"
+    base_image_path = "/content/extracted/imdb_crop/"
     image_paths = [os.path.join(base_image_path, path[0]) for path in filtered_paths]
 
     # Set minimum dimensions for ResNet input and initialize filtered lists
