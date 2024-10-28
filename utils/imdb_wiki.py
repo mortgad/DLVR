@@ -1,28 +1,9 @@
-# Function to download and extract tar files
 def download_and_extract(extract_dir):
     import os
     import tarfile
     import urllib.request
-    # File name based on URL
-    file_name = url.split('/')[-1]
-    file_path = os.path.join(extract_dir, file_name)
 
-    # Download the file
-    print(f"Downloading {file_name}...")
-    urllib.request.urlretrieve(url, file_path)
-    print(f"Downloaded {file_name}.")
-
-    # Extract the tar file
-    print(f"Extracting {file_name}...")
-    with tarfile.open(file_path, "r") as tar:
-        tar.extractall(extract_dir)
-    print(f"Extracted {file_name}.")
-
-    # Remove the tar file after extraction to save space
-    os.remove(file_path)
-    print(f"Removed {file_name}.")
-
-    # Define URLs and destination path
+    # Define URLs within the function
     urls = [
         "https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/static/imdb_crop.tar",
         "https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/static/imdb_meta.tar"
@@ -31,9 +12,26 @@ def download_and_extract(extract_dir):
     # Create the destination directory if it doesn't exist
     os.makedirs(extract_dir, exist_ok=True)
 
-    # Download and extract each dataset
+    # Loop over each URL, download, and extract
     for url in urls:
-        download_and_extract(url, extract_dir)
+        # File name based on URL
+        file_name = url.split('/')[-1]
+        file_path = os.path.join(extract_dir, file_name)
+
+        # Download the file
+        print(f"Downloading {file_name}...")
+        urllib.request.urlretrieve(url, file_path)
+        print(f"Downloaded {file_name}.")
+
+        # Extract the tar file
+        print(f"Extracting {file_name}...")
+        with tarfile.open(file_path, "r") as tar:
+            tar.extractall(extract_dir)
+        print(f"Extracted {file_name}.")
+
+        # Remove the tar file after extraction to save space
+        os.remove(file_path)
+        print(f"Removed {file_name}.")
 
     print("All datasets downloaded and extracted.")
 
