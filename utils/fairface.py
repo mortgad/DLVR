@@ -213,7 +213,10 @@ def split_data(images, ages, races, genders):
 
 
 def create_lists(df):
-    !pip install PyDrive
+        def install(package):
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    install('PyDrive')
+    install('oauth2client')
     from pydrive.auth import GoogleAuth
     from pydrive.drive import GoogleDriveFile
     import os
