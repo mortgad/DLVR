@@ -14,10 +14,11 @@ https://colab.research.google.com/github/googlecolab/colabtools/blob/master/note
   
 2a: If necessary, clone the repo from within the Colab view to use utils
   
-3: Make changes, make temporary saves using "File" -> "Save a copy to Drive"
+3: Make changes
 
-4: To push changes to GitHub, press "File" -> "Save a copy to GitHub"
+3a: If necessary, make local saves using "File" -> "Save a copy to Drive"
 
+4: To push changes to GitHub, press "Save" and overwrite current file in GitHub
 
 ### Python scripts
 
@@ -41,7 +42,3 @@ Then, you can import from utils, e.g.:
 from utils.tokenizer import tokenize
 tokenize(text="Hello World")
 ```
-
-## Cloning GitHub repo within a kaggle file
-https://www.kaggle.com/datasets/jangedoo/utkface-new
-1. TODO
