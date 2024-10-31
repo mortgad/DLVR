@@ -213,7 +213,7 @@ def split_data(images, ages, races, genders):
 
 
 def create_lists(df):
-    # Pip install
+    # Pip install PyDrive
     import subprocess
     import sys
     def install(package):
