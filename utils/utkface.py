@@ -34,8 +34,7 @@ def load_utkface():
 
             print(f'Extracted {file["title"]}')
 
-
-def load_and_preprocess():
+def preprocess_utkface():
     import os
     import cv2
     import numpy as np
