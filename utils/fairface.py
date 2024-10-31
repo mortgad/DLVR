@@ -213,7 +213,10 @@ def split_data(images, ages, races, genders):
 
 
 def create_lists(df):
-        def install(package):
+    # Pip install
+    import subprocess
+    import sys
+    def install(package):
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
     install('PyDrive')
     install('oauth2client')
