@@ -121,5 +121,52 @@ def preprocess_utkface():
         'race_code': ethnicities_utkface
     })
 
+    ### Mapping age
+    # Define the age mapping function
+    def map_age(age):
+        if age <= 2:
+            return '0-2'
+        elif 3 <= age <= 9:
+            return '3-9'
+        elif 10 <= age <= 19:
+            return '10-19'
+        elif 20 <= age <= 29:
+            return '20-29'
+        elif 30 <= age <= 39:
+            return '30-39'
+        elif 40 <= age <= 49:
+            return '40-49'
+        elif 50 <= age <= 59:
+            return '50-59'
+        elif 60 <= age <= 69:
+            return '60-69'
+        else:
+            return '70+'
+
+    # Map the 'age_raw' column to the 'age' column
+    df_utkface_raw['age'] = df_utkface_raw['age_raw'].apply(map_age)
+
+    # Setting the desired order for 'age'
+    age_order = ['0-2', '3-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70+']
+    df_utkface_raw['age'] = df_utkface_raw['age'].astype('category')
+    df_utkface_raw['age'] = df_utkface_raw['age'].cat.set_categories(age_order, ordered=True)
+
+    # Encoding the age groups
+    df_utkface_raw['age_code'] = df_utkface_raw['age'].cat.codes
+
+    # Mapping gender
+    # Define gender mapping
+    gender_map = {0: 'Male', 1: 'Female'}
+
+    # Map 'gender_code' to the 'gender' column
+    df_utkface_raw['gender'] = df_utkface_raw['gender_code'].map(gender_map)
+
+    # Mapping race
+    # Define race mapping based on the specified order
+    race_map_utk = {0: 'White', 1: 'Black', 2: 'Asian', 3: 'Indian', 4: 'Others'}
+
+    # Map 'race_code' to the 'race' column
+    df_utkface_raw['race'] = df_utkface_raw['race_code'].map(race_map_utk)
+
     # Return the DataFrame
     return df_utkface, df_utkface_raw
