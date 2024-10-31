@@ -245,48 +245,48 @@ def create_lists(df):
     import pandas as pd
     from PIL import Image
   # Initialize lists to store images and labels
-  images = []
-  ages = []
-  races = []
-  genders = []
+      images = []
+      ages = []
+      races = []
+      genders = []
 
   # Iterate over each row in the DataFrame
-  for _, row in df.iterrows():  # Iterate over each row in the sampled dataframe
-    img_path = row['file']           # Extract the file path
-    age_code = row['age_code']       # Extract the age code
-    race_code = row['race_code']     # Extract the race code
-    gender_code = row['gender_code'] # Extract the gender code
+      for _, row in df.iterrows():  # Iterate over each row in the sampled dataframe
+        img_path = row['file']           # Extract the file path
+        age_code = row['age_code']       # Extract the age code
+        race_code = row['race_code']     # Extract the race code
+        gender_code = row['gender_code'] # Extract the gender code
 
-    try:
+        try:
         # Open the image
-        img = Image.open(img_path)
+            img = Image.open(img_path)
 
         # Convert the image to RGB (if it's grayscale or RGBA)
-        img = img.convert("RGB")
+            img = img.convert("RGB")
 
         # Resize the image to the target size (224, 224)
-        img = img.resize((224, 224))
+            img = img.resize((224, 224))
 
         # Convert the resized image to a numpy array
-        img_array = np.array(img)
+            img_array = np.array(img)
 
         # Ensure the image has the correct shape (224, 224, 3)
-        if img_array.shape == (224, 224, 3):
-            images.append(img_array)  # Append the image to the list
-            ages.append(age_code)  # Append the age code to the 'ages' list
-            races.append(race_code)
-            genders.append(gender_code)
+            if img_array.shape == (224, 224, 3):
+                images.append(img_array)  # Append the image to the list
+                ages.append(age_code)  # Append the age code to the 'ages' list
+                races.append(race_code)
+                genders.append(gender_code)
 
-        else:
-            print(f"Skipping image with incorrect shape: {img_path}")
-    except Exception as e:
-        print(f"Error loading image {img_path}: {e}")
+            else:
+                print(f"Skipping image with incorrect shape: {img_path}")
+        except Exception as e:
+            print(f"Error loading image {img_path}: {e}")
 
   # Convert lists to numpy arrays
-  images = np.array(images)
-  ages = np.array(ages)
-  races = np.array(races)
-  genders = np.array(genders)
+      images = np.array(images)
+      ages = np.array(ages)
+      races = np.array(races)
+      genders = np.array(genders)
 
   return images, ages, races, genders
 
