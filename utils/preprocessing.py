@@ -73,3 +73,50 @@ def create_lists(df):
     genders = np.array(genders)
 
     return images, ages, races, genders
+
+
+
+def evaluate_and_plot(history, accuracy_key = 'accuracy', val_accuracy_key = 'val_accuracy', loss_key = 'loss', val_loss_key = 'val_loss'):
+  import matplotlib.pyplot as plt
+  # Get the accuracy and loss data from the history object
+  accuracy = history.history[accuracy_key]
+  val_accuracy = history.history[val_accuracy_key]
+  loss = history.history[loss_key]
+  val_loss = history.history[val_loss_key]
+  epochs = range(1, len(accuracy) + 1)
+
+  # Find the best accuracy and loss values
+  best_acc = max(accuracy)
+  best_val_acc = max(val_accuracy)
+  best_loss = min(loss)
+  best_val_loss = min(val_loss)
+
+  # Print the best values
+  print(f"Best Training Accuracy: {best_acc:.4f}")
+  print(f"Best Validation Accuracy: {best_val_acc:.4f}")
+  print(f"Best Training Loss: {best_loss:.4f}")
+  print(f"Best Validation Loss: {best_val_loss:.4f}")
+
+  # Plotting accuracy
+  plt.figure(figsize=(12, 5))
+
+  plt.subplot(1, 2, 1)
+  plt.plot(epochs, accuracy, label='Training Accuracy')
+  plt.plot(epochs, val_accuracy, label='Validation Accuracy')
+  plt.title('Training and Validation Accuracy')
+  plt.xlabel('Epochs')
+  plt.ylabel('Accuracy')
+  plt.legend()
+
+  # Plotting loss
+  plt.subplot(1, 2, 2)
+  plt.plot(epochs, loss, label='Training Loss')
+  plt.plot(epochs, val_loss, label='Validation Loss')
+  plt.title('Training and Validation Loss')
+  plt.xlabel('Epochs')
+  plt.ylabel('Loss')
+  plt.legend()
+
+  # Show the plots
+  plt.tight_layout()
+  plt.show()
