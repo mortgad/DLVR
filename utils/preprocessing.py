@@ -76,7 +76,7 @@ def create_lists(df):
 
 
 
-def evaluate_and_plot(history, accuracy_key = 'accuracy', val_accuracy_key = 'val_accuracy', loss_key = 'loss', val_loss_key = 'val_loss'):
+def evaluate_and_plot_classifier(history, accuracy_key = 'accuracy', val_accuracy_key = 'val_accuracy', loss_key = 'loss', val_loss_key = 'val_loss'):
   import matplotlib.pyplot as plt
   # Get the accuracy and loss data from the history object
   accuracy = history.history[accuracy_key]
@@ -120,3 +120,49 @@ def evaluate_and_plot(history, accuracy_key = 'accuracy', val_accuracy_key = 'va
   # Show the plots
   plt.tight_layout()
   plt.show()
+
+
+def evaluate_and_plot_regression(history, mae_key='mae', val_mae_key='val_mae', loss_key='loss', val_loss_key='val_loss'):
+    import matplotlib.pyplot as plt
+    # Get the MAE and loss data from the history object
+    mae = history.history[mae_key]
+    val_mae = history.history[val_mae_key]
+    loss = history.history[loss_key]
+    val_loss = history.history[val_loss_key]
+    epochs = range(1, len(mae) + 1)
+
+    # Find the best MAE and loss values
+    best_mae = min(mae)  # Lower MAE is better
+    best_val_mae = min(val_mae)
+    best_loss = min(loss)
+    best_val_loss = min(val_loss)
+
+    # Print the best values
+    print(f"Best Training MAE: {best_mae:.4f}")
+    print(f"Best Validation MAE: {best_val_mae:.4f}")
+    print(f"Best Training Loss: {best_loss:.4f}")
+    print(f"Best Validation Loss: {best_val_loss:.4f}")
+
+    # Plotting MAE
+    plt.figure(figsize=(12, 5))
+
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, mae, label='Training MAE')
+    plt.plot(epochs, val_mae, label='Validation MAE')
+    plt.title('Training and Validation MAE')
+    plt.xlabel('Epochs')
+    plt.ylabel('Mean Absolute Error (MAE)')
+    plt.legend()
+
+    # Plotting loss
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, loss, label='Training Loss')
+    plt.plot(epochs, val_loss, label='Validation Loss')
+    plt.title('Training and Validation Loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+
+    # Show the plots
+    plt.tight_layout()
+    plt.show()
