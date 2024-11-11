@@ -1,33 +1,7 @@
 def create_lists(df):
-    # Install necessary packages
-    import subprocess
-    import sys
-
-    def install(package):
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-    install('PyDrive')
-    install('oauth2client')
-    
-    # Import necessary libraries
-    from pydrive.auth import GoogleAuth
-    from pydrive.drive import GoogleDrive
-    import os
     import numpy as np
-    import pandas as pd
-    from google.colab import auth
-    from oauth2client.client import GoogleCredentials
-    from pathlib import Path
     from tqdm.notebook import tqdm
     from PIL import Image
-    import cv2
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    from google.colab import drive
-    from sklearn.model_selection import train_test_split
-    from keras.applications import mobilenet_v3
-    import keras
-    from keras import layers, models
 
     # Initialize lists to store images and labels
     images = []
@@ -35,8 +9,8 @@ def create_lists(df):
     races = []
     genders = []
 
-    # Iterate over each row in the DataFrame
-    for _, row in df.iterrows():  # Iterate over each row in the sampled dataframe
+    # Iterate over each row in the DataFrame with a progress bar
+    for _, row in tqdm(df.iterrows(), total=len(df), desc="Processing images"):
         img_path = row['file']           # Extract the file path
         age_code = row['age_code']       # Extract the age code
         race_code = row['race_code']     # Extract the race code
@@ -73,8 +47,6 @@ def create_lists(df):
     genders = np.array(genders)
 
     return images, ages, races, genders
-
-
 
 def evaluate_and_plot_classifier(history, accuracy_key = 'accuracy', val_accuracy_key = 'val_accuracy', loss_key = 'loss', val_loss_key = 'val_loss'):
   import matplotlib.pyplot as plt
